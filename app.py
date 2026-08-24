@@ -17,6 +17,9 @@ def contato():
 def sobre():
     return render_template('sobre.html')
 
+@app.route('/aluno')
+def lista_aluno():
+    return render_template('aluno/lista.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
