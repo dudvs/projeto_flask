@@ -21,5 +21,9 @@ def sobre():
 def lista_aluno():
     return render_template('aluno/lista.html')
 
+@app.route('/professor')
+def lista_professor():
+    return render_template('professor/lista.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
