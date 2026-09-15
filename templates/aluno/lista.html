@@ -1,15 +1,27 @@
 {% include 'cabecalho.html' %}
 
-<h1 class="mb-4">Lista Alunos</h1>
+<h1 class="mb-4">Lista de Alunos</h1>
 
-<div class="row">
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+        </tr>
+    </thead>
 
-    {% for aluno in lista_aluno %}
-        <p>
-            {{ aluno[0] }} - {{ aluno[1] }} - {{ aluno[2] }} anos - {{ aluno[3] }}
-        </p>
-    {% endfor %}
-
-</div>
+    <tbody>
+        {% for aluno in lista_aluno %}
+        <tr>
+            <td>{{ aluno[0] }}</td>
+            <td>{{ aluno[1] }}</td>
+            <td>{{ aluno[2] }}</td>
+            <td>{{ aluno[3] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% include 'rodape.html' %}
