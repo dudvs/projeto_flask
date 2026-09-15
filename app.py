@@ -24,8 +24,7 @@ def lista_aluno():
     cursor = conn.cursor()
     cursor.execute('SELECT id, nome, idade, cidade FROM aluno')
     lista_alunos = cursor.fetchall()
-    #lista_alunos  = []
-    
+    conn.close()
     return render_template('aluno/lista.html', lista_aluno=lista_alunos)
 
 @app.route('/professor')

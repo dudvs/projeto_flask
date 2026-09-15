@@ -4,9 +4,12 @@
 
 <div class="row">
 
-    {{texto}}
+    {% for aluno in lista_aluno %}
+        <p>
+            {{ aluno[0] }} - {{ aluno[1] }} - {{ aluno[2] }} anos - {{ aluno[3] }}
+        </p>
+    {% endfor %}
 
 </div>
-
 
 {% include 'rodape.html' %}
