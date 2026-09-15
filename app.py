@@ -29,7 +29,13 @@ def lista_aluno():
 
 @app.route('/professor')
 def lista_professor():
-    return render_template('professor/lista.html')
+    DB_PATH = "banco_escola.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('select id, nome, disciplina from professor')
+    lista= cursor.fetchall()
+    conn.close()
+    return render_template('professor/lista.html', lista=lista)
 
 if __name__ == '__main__':
     app.run(debug=True)
