@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from dao.aluno_dao import AlunoDAO
+from dao.professor_dao import ProfessorDAO
 
 
 app = Flask(__name__)
@@ -25,12 +26,8 @@ def lista_aluno():
 
 @app.route('/professor')
 def lista_professor():
-    DB_PATH = "banco_escola.db"
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute('select id, nome, disciplina from professor')
-    lista= cursor.fetchall()
-    conn.close()
+    dao = ProfessorDAO()
+    lista = dao.listar()
     return render_template('professor/lista.html', lista=lista)
 
 @app.route('/turma')
