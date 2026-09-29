@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import sqlite3  
+from dao.aluno_dao import AlunoDAO
 
 
 app = Flask(__name__)
@@ -19,13 +19,9 @@ def sobre():
 
 @app.route('/aluno')
 def lista_aluno():
-    DB_PATH = "banco_escola.db"
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute('SELECT id, nome, idade, cidade FROM aluno')
-    lista_alunos = cursor.fetchall()
-    conn.close()
-    return render_template('aluno/lista.html', lista_aluno=lista_alunos)
+    dao = AlunoDAO()
+    lista = dao.listar()
+    return render_template('aluno/lista.html', lista_alunos=lista)
 
 @app.route('/professor')
 def lista_professor():
