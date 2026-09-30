@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
 from dao.curso_dao import CursoDAO
@@ -19,6 +19,31 @@ def contato():
 @app.route('/sobre')
 def sobre():
     return render_template('sobre.html')
+
+@app.route('/saudacao1/<nome>')
+def saudacao1(nome):
+    return render_template(
+        'saudacao/saudacao.html',
+        valor_recebido=nome
+    )
+
+@app.route('/saudacao2/')
+def saudacao2():
+    nome = request.args.get('nome')
+    return render_template(
+        'saudacao/saudacao.html',
+        valor_recebido=nome
+    )
+
+@app.route('/login', methods=['POST'])
+def login():
+    usuario = request.form['usuario']
+    senha = request.form['senha']
+    dados = f"Usuário: {usuario}, Senha: {senha}"
+    return render_template(
+        'saudacao/saudacao.html',
+        valor_recebido=dados
+    )
 
 @app.route('/aluno')
 def lista_aluno():
