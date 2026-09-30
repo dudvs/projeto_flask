@@ -45,6 +45,26 @@ def login():
         valor_recebido=dados
     )
 
+@app.route('/desafio1')
+def desafio1():
+    return render_template('desafio1/cadastro.html')
+
+
+@app.route('/desafio1', methods=['POST'])
+def receber_desafio1():
+    nome = request.form['nome']
+    data_nascimento = request.form['data_nascimento']
+    cpf = request.form['cpf']
+    nome_mae = request.form['nome_mae']
+    return render_template(
+        'desafio1/resultado.html',
+        nome=nome,
+        data_nascimento=data_nascimento,
+        cpf=cpf,
+        nome_mae=nome_mae
+    )
+
+
 @app.route('/aluno')
 def lista_aluno():
     dao = AlunoDAO()
